@@ -6,9 +6,6 @@ A robust 2.5D cinematic camera solution for Godot 4.x, designed to achieve the d
 
 This plugin provides a `MainCamera` node and a `CameraTrigger` system that allows you to easily switch between camera behaviors (like fixed shots, path tracking, and simple following) as the player moves through your 3D environment.
 
-![Example Screenshot](https://i.imgur.com/your-image-url.png) 
-*(Optional: You can replace the URL above with a screenshot of your plugin in action after you upload one to GitHub or Imgur)*
-
 ## Key Features
 * **5 Camera Modes**: Includes On Start, Simple Follow, Fixed Position, Path Tracking, and Revert to Default.
 * **Intuitive Path Tracking**: Ditch complex math! Just assign a `Path3D` node to create smooth, curved, cinematic crane shots.
@@ -29,7 +26,8 @@ This plugin provides a `MainCamera` node and a `CameraTrigger` system that allow
 ## Option 2: Install with Git
 You can use Git to clone this repository directly into your `addons` folder:
 ```sh
-git clone [https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git](https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git) res://addons/cinematic_camera'''
+git clone [https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git](https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git) res://addons/cinematic_camera
+```
 
 ### Activation
 After installing, you must **activate the plugin**:
