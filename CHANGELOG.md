@@ -2,7 +2,7 @@
 
 The following details the evolution and fixes applied to the Cinematic Camera plugin.
 
-## v2.5.0 - ## v2.5 - Major Feature Consolidation
+## v2.5.0 - Major Feature Consolidation
 
 **Version Goal:** Implement and consolidate all advanced cinematic polish, dynamic control features, and the new setup diagnosis tool into a single, comprehensive release for maximum user confidence and stability.
 
