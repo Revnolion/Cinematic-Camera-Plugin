@@ -19,7 +19,7 @@ This plugin provides a `MainCamera` node and a `CameraTrigger` system that allow
 
 ### Option 1: Install from GitHub
 1.  Go to the **Releases** page of this repository.
-2.  Download the latest release ZIP file. (e.g., `Cinematic-Camera-Plugin-v2.22.zip`)
+2.  Download the latest release ZIP file. (e.g., `Cinematic-Camera-Plugin-v2.3.zip`)
 3.  Extract the zip folder.
 4.  Place this folder inside your project's `addons/` directory.
 
