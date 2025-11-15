@@ -26,7 +26,7 @@ This plugin provides a `MainCamera` node and a `CameraTrigger` system that allow
 ### Option 2: Install with Git
 You can use Git to clone this repository directly into your `addons` folder:
 ```sh
-git clone [https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git](https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git) res://addons/cinematic_camera
+git clone [https://github.com/Revnolion/Cinematic-Camera-Plugin.git](https://github.com/Revnolion/Cinematic-Camera-Plugin.git) res://addons/cinematic_camera
 ```
 ### Activation
 After installing, you must **activate the plugin**:
