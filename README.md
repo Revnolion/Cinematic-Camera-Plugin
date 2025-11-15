@@ -2,6 +2,8 @@
 ![Godot Version](https://img.shields.io/badge/Godot-4.x-blue?logo=godotengine)
 ![License](https://img.shields.io/badge/License-MIT-green)
 
+Version 3.0.0 releases next week!!
+
 A robust 2.5D cinematic camera solution for Godot 4.x, designed to achieve the dynamic, scale-focused perspective of games like *Little Nightmares*.
 
 This plugin provides a `MainCamera` node and a `CameraTrigger` system that allows you to easily switch between camera behaviors (like fixed shots, path tracking, and simple following) as the player moves through your 3D environment.
