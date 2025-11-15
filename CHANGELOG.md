@@ -2,6 +2,14 @@
 
 The following details the evolution and fixes applied to the Cinematic Camera plugin.
 
+## v2.5.0 - Cinematic Polish & Control
+
+**Version Goal:** Implement features for controlling camera motion smoothness and adding dynamic, physical feedback to the camera.
+
+### New Features:
+* **[Aesthetics] Event-Driven Camera Shake:** Added a system to apply procedural noise and physical feedback to the camera (for impacts, footsteps, explosions) via a simple function call.
+* **[Control] Cinematic Blend Modes:** Allows designers to select non-linear easing types or custom curves for professional, smooth blending between camera modes.
+
 ---
 
 ## v2.4.0 - Dependency Diagnosis & Automation
