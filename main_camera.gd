@@ -22,10 +22,13 @@ func _get_is_in_path_mode():
 @export var player_look_at_offset: Vector3 = Vector3(0, 1.0, 0)
 
 # --- DEBUG MONITOR EXPORTS ---
+## (Read-only) Shows the current offset used for following the player.
 @export var current_target_offset_monitor: Vector3:
 	get = _get_current_target_offset
+## (Read-only) Shows the Node3D the camera is currently locked to.
 @export var fixed_target_node_monitor: Node3D:
 	get = _get_fixed_target_node_monitor
+## (Read-only) Shows if the camera is currently executing Path Tracking mode.
 @export var is_in_path_mode_monitor: bool = false:
 	get = _get_is_in_path_mode
 

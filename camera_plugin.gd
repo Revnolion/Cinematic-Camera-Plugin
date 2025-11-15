@@ -11,7 +11,6 @@ var original_debug_color
 
 # Function is called when the plugin is enabled
 func _enter_tree():
-	
 	# Define custom color (bright pink, 40% transparent)
 	var new_color = Color(1.0, 0.0, 1.0, 0.4)
 	# The internal name for the setting we want to change
@@ -23,7 +22,7 @@ func _enter_tree():
 	# Only change if it's not already the set color
 	if original_debug_color != new_color:
 		ProjectSettings.set_setting(setting_path, new_color)
-		print("Cinematic Camera Plugin: Set debug shape color.")
+		print_verbose("Cinematic Camera Plugin: Set debug shape color.")
 
 # Function is called when plugin is disabled
 func _exit_tree():
@@ -34,7 +33,7 @@ func _exit_tree():
 	# Only revert if a color is stored
 	if original_debug_color:
 		ProjectSettings.set_setting(setting_path, original_debug_color)
-		print("Cinematic Camera Plugin: Reverted debug shape color.")
+		print_verbose("Cinematic Camera Plugin: Reverted debug shape color.")
 		
 	pass
 

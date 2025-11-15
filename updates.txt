@@ -1,5 +1,11 @@
 Update History
 
+v2.22 - Editor Logging Polish
+
+Fixes & Improvements:
+* [Polish] Consolidated logging: Replaced `print()` with `print_verbose()` for editor setup/teardown in `camera_plugin.gd` and successful `auto_find_main_camera` operations.
+* [Polish] Ensured all error reporting is consistent by replacing `print()` with `push_warning()` for failed node lookups in `camera_trigger.gd`.
+
 v2.21 - Polish Patch 
 
 Fixes & Improvements:

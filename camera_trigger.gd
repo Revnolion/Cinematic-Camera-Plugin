@@ -194,10 +194,10 @@ func _auto_find_main_camera(value: bool):
 		var cam = get_tree().get_first_node_in_group("main_camera")
 		if is_instance_valid(cam) and cam is Camera3D:
 			main_camera = cam
-			print("Found and assigned Main Camera: ", cam.name)
+			print_verbose("Cinematic Camera Plugin: Found and assigned Main Camera: " + cam.name)
 			notify_property_list_changed()
 		else:
-			print("CameraTrigger Error: Could not find node in 'main_camera' group.")
+			push_warning("CameraTrigger: Could not find node in 'main_camera' group.")
 
 func _get_editor_viewport_camera():
 	var viewport = get_viewport()

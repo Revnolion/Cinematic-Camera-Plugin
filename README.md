@@ -23,12 +23,11 @@ This plugin provides a `MainCamera` node and a `CameraTrigger` system that allow
 3.  Extract the `addons/cinematic_camera` folder from the ZIP.
 4.  Place this folder inside your project's `addons/` directory.
 
-## Option 2: Install with Git
+### Option 2: Install with Git
 You can use Git to clone this repository directly into your `addons` folder:
 ```sh
 git clone [https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git](https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git) res://addons/cinematic_camera
 ```
-
 ### Activation
 After installing, you must **activate the plugin**:
 1.  Go to **Project -> Project Settings -> Plugins**.
