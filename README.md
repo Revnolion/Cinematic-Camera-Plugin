@@ -19,7 +19,7 @@ This plugin provides a `MainCamera` node and a `CameraTrigger` system that allow
 
 ### Option 1: Install from GitHub
 1.  Go to the **Releases** page of this repository.
-2.  Download the latest release ZIP file. (e.g., `Cinematic-Camera-Plugin-v2.3.zip`)
+2.  Download the latest release ZIP file. (e.g., `Cinematic-Camera-Plugin-v2.22.zip`)
 3.  Extract the zip folder.
 4.  Place this folder inside your project's `addons/` directory.
 
@@ -61,21 +61,21 @@ This is your player's camera. You only need **one** in your scene.
 This is the core of the plugin. When you select a `Trigger Mode`, the inspector will update to show only the settings you need.
 
 * **Mode 0: On Start**
-    * If checked, this trigger's settings will be applied the moment the game loads. Use this on one trigger to set your opening camera shot.
+	* If checked, this trigger's settings will be applied the moment the game loads. Use this on one trigger to set your opening camera shot.
 
 * **Mode 1: Simple Follow**
-    * This is the default follow mode. It tells the camera to follow the player using a new `Mode 1 New Camera Offset`. Good for top-down or side-scrolling sections.
+	* This is the default follow mode. It tells the camera to follow the player using a new `Mode 1 New Camera Offset`. Good for top-down or side-scrolling sections.
 
 * **Mode 2: Fixed Position**
-    * Moves the camera to a fixed point in the world.
-    * Create a `Marker3D` node in your scene and assign it to the `Mode 2 Fixed Target` slot. The camera will move to this marker and look at the player.
+	* Moves the camera to a fixed point in the world.
+	* Create a `Marker3D` node in your scene and assign it to the `Mode 2 Fixed Target` slot. The camera will move to this marker and look at the player.
 
 * **Mode 3: Path Tracking**
-    * Links the camera's position on a `Path3D` to the player's movement on one axis (X, Y, or Z).
-    * Create a `Path3D` node and draw your camera's path.
+	* Links the camera's position on a `Path3D` to the player's movement on one axis (X, Y, or Z).
+	* Create a `Path3D` node and draw your camera's path.
     * Assign the `Path3D` to the `Mode 3 Camera Path` slot.
     * Set the **`Player Track Axis`** (e.g., `AXIS_Z` if the player is moving down a Z-axis hallway).
-    * Set the **`Player Track Start`** and **`Player Track End`** values. These are the player's world positions (e.g., `Z=0` and `Z=20`) that correspond to 0% and 100% of the camera's path.
+	* Set the **`Player Track Start`** and **`Player Track End`** values. These are the player's world positions (e.g., `Z=0` and `Z=20`) that correspond to 0% and 100% of the camera's path.
 
 * **Mode 4: Revert to Default**
     * Resets the camera to its original settings (the `camera_offset` and `follow_speed` defined on the `MainCamera` node). Use this to end a fixed shot.

@@ -109,10 +109,11 @@ func _exit_tree():
 	if Engine.is_editor_hint():
 		return
 	
-	# If the camera exists, force it to revert to default to prevent lockup
+	# Check if the trigger was currently active and has a camera assigned.
+	# We force the camera to revert to default settings to prevent lock-up.
 	if is_instance_valid(main_camera) and trigger_mode != TriggerMode.REVERT_TO_DEFAULT:
 		main_camera.revert_to_default()
-
+		
 ## V2.3 Setter: Runs path detection when a Path3D node is assigned.
 func _set_mode_3_camera_path(value: NodePath):
 	mode_3_camera_path = value
@@ -164,8 +165,9 @@ func _ready():
 	body_entered.connect(_on_body_entered)
 	
 	var shape = find_child("CSG_Shape_Gizmo", false)
+	# Cleanly remove the editor shape at runtime for performance and memory cleanup.
 	if not Engine.is_editor_hint() and is_instance_valid(shape):
-		shape.visible = false
+		shape.queue_free()
 	
 	if not Engine.is_editor_hint() and set_on_start:
 		await get_tree().physics_frame
@@ -228,7 +230,7 @@ func _get_editor_viewport_camera():
 	return null
 	
 func _set_trigger_size(new_size: Vector3):
-	trigger_size = new_size 
+	trigger_size = new_size
 
 	if Engine.is_editor_hint():
 		var shape = find_child("CSG_Shape_Gizmo", false)

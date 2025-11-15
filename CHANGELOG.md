@@ -3,6 +3,17 @@
 The following details the evolution and fixes applied to the Cinematic Camera plugin.
 
 ---
+
+## v2.3.1 - Stability Patch
+
+**Version Goal:** Resolve all known runtime memory and scope issues discovered during the V2.3 implementation cycle.
+
+### Fixes & Improvements:
+* **[Code Cleanup]** Ensured the editor gizmo (`CSG_Shape_Gizmo`) is cleanly removed from memory at runtime (`queue_free()`) rather than just being hidden.
+* **[Architecture]** Began the refactor foundation for a future foundational update by creating the `CameraUtils.gd` script, which will house global utility functions for better organization.
+
+---
+
 ## v2.3 - Workflow Automation
 
 **Version Goal:** Improve setup workflow and prevent camera lock-up errors by automating critical configuration steps.
@@ -59,7 +70,7 @@ The following details the evolution and fixes applied to the Cinematic Camera pl
     * Removed the complex 8-property "Dynamic Tracking" mode.
     * Implemented a new, far more intuitive "Path Tracking" mode.
     * Designers now just assign a Path3D node to create smooth, curved, cinematic camera movements.
-    * The camera can now follow the path's rotation or optionally continue to 'look_at' the player.
+	* The camera can now follow the path's rotation or optionally continue to 'look_at' the player.
 * **[Editor]** Updated Gizmo: The editor gizmo now draws a helper line to the start of the assigned Path3D.
 
 ### Fixes & Improvements:
