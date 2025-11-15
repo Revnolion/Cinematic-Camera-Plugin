@@ -83,7 +83,7 @@ This is the core of the plugin. When you select a `Trigger Mode`, the inspector 
 ---
 
 ## 📈 Version History
-For a detailed list of all changes, please see the [updates.txt](updates.txt) file.
+For a detailed list of all changes, please see the [CHANGELOG.md](CHANGELOG.md) file.
 
 ## 📄 License
 This plugin is released under the MIT License. See the `LICENSE` file for more information.
