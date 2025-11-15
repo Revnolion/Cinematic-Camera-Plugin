@@ -2,25 +2,16 @@
 
 The following details the evolution and fixes applied to the Cinematic Camera plugin.
 
-## v2.5.0 - Cinematic Polish & Control
+## v2.5.0 - ## v2.5 - Major Feature Consolidation
 
-**Version Goal:** Implement features for controlling camera motion smoothness and adding dynamic, physical feedback to the camera.
+**Version Goal:** Implement and consolidate all advanced cinematic polish, dynamic control features, and the new setup diagnosis tool into a single, comprehensive release for maximum user confidence and stability.
+
+**NOTE:** V2.4.0 was merged into this release due to additional features that were created for it. 
 
 ### New Features:
+* **[Workflow] Scene Setup Checker:** Implemented a dedicated bottom panel diagnosis tool that scans the scene and instantly flags missing dependencies (e.g., Camera not in group, Triggers unassigned).
 * **[Aesthetics] Event-Driven Camera Shake:** Added a system to apply procedural noise and physical feedback to the camera (for impacts, footsteps, explosions) via a simple function call.
 * **[Control] Cinematic Blend Modes:** Allows designers to select non-linear easing types or custom curves for professional, smooth blending between camera modes.
-
----
-
-## v2.4.0 - Dependency Diagnosis & Automation
-
-**Version Goal:** Implement automated diagnostics and user guidance to solve common setup errors for new users.
-
-### New Features:
-* **[QOL] Scene Setup Checker:** Implemented a dedicated "Camera Setup" bottom panel that runs a scene diagnosis check, guiding users to fix missing Player/Camera nodes and unassigned triggers.
-
-### Fixes & Improvements:
-* **[Code Cleanup]** Cleanly removed the experimental and unstable Interactive Boundary Markers feature code.
 
 ---
 
