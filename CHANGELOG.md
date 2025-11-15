@@ -4,6 +4,18 @@ The following details the evolution and fixes applied to the Cinematic Camera pl
 
 ---
 
+## v2.4.0 - Dependency Diagnosis & Automation
+
+**Version Goal:** Implement automated diagnostics and user guidance to solve common setup errors for new users.
+
+### New Features:
+* **[QOL] Scene Setup Checker:** Implemented a dedicated "Camera Setup" bottom panel that runs a scene diagnosis check, guiding users to fix missing Player/Camera nodes and unassigned triggers.
+
+### Fixes & Improvements:
+* **[Code Cleanup]** Cleanly removed the experimental and unstable Interactive Boundary Markers feature code.
+
+---
+
 ## v2.3.1 - Stability Patch
 
 **Version Goal:** Resolve all known runtime memory and scope issues discovered during the V2.3 implementation cycle.
