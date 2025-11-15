@@ -1,10 +1,11 @@
 # 📜 Changelog / Update History
 
-The following details the evolution and fixes applied to the Cinematic Camera System plugin.
+The following details the evolution and fixes applied to the Cinematic Camera plugin.
 
 ---
 
 ## v2.22 - Editor Logging Polish
+**Version Goal:** Ensure full logging consistency across all scripts by using `push_warning` for errors and `print_verbose` for non-critical setup information.
 
 ### Fixes & Improvements:
 * **[Polish]** Consolidated logging: Replaced `print()` with `print_verbose()` for editor setup/teardown in `camera_plugin.gd` and successful `auto_find_main_camera` operations.
@@ -13,6 +14,7 @@ The following details the evolution and fixes applied to the Cinematic Camera Sy
 ---
 
 ## v2.21 - Polish Patch
+**Version Goal:** Final cleanup pass to prepare for public GitHub release.
 
 ### Fixes & Improvements:
 * **[Code Cleanup]** Removed internal development comments and notes from all scripts for a clean public release.
@@ -20,6 +22,7 @@ The following details the evolution and fixes applied to the Cinematic Camera Sy
 ---
 
 ## v2.2 - Polish & Stability
+**Version Goal:** Add advanced quality-of-life (QOL) features, complete editor documentation, and implement critical runtime crash prevention.
 
 ### New Features:
 * Added dynamic, read-only "Mode Description" in the CameraTrigger inspector to clearly explain what each mode does.
@@ -35,6 +38,7 @@ The following details the evolution and fixes applied to the Cinematic Camera Sy
 ---
 
 ## v2.1 - Intuitive Path Refactor
+**Version Goal:** Simplify the core camera movement system by replacing the complex Dynamic Tracking mode with a user-friendly Path Tracking implementation.
 
 ### New Features:
 * **Replaced Dynamic Tracking with Path Tracking (Mode 3):**
@@ -50,7 +54,7 @@ The following details the evolution and fixes applied to the Cinematic Camera Sy
 ---
 
 ## v2.001 (MINOR PATCH)
-
+**Version Goal:** Address minor bugs and tooltip inconsistencies immediately following the larger v2.0 feature release.
 ### Fixes & Improvements:
 * Minor bug fixes.
 * Tooltip cleanup and adjustments.
@@ -58,6 +62,7 @@ The following details the evolution and fixes applied to the Cinematic Camera Sy
 ---
 
 ## v2.0 - Architectural Completion & Final Stabilization
+**Version Goal:** Integrate the first round of usability features (resizing, collision suppression) into the finalized architecture for stability.
 
 ### New Features:
 * **[QOL]** Added 'Trigger Size' property to the parent node. Modifying this single property automatically scales the visual CSGBox3D size.
@@ -70,6 +75,7 @@ The following details the evolution and fixes applied to the Cinematic Camera Sy
 ---
 
 ## v1.9 - Visual Feedback & Workflow
+**Version Goal:** Improve the visual fidelity and feedback provided to the user within the Godot editor.
 
 ### New Features:
 * **[Editor]** Visual Mode Indicators: The zone box instantly changes color in the editor based on the selected 'Trigger Mode'.
@@ -81,6 +87,7 @@ The following details the evolution and fixes applied to the Cinematic Camera Sy
 ---
 
 ## v1.8 - Core QOL Refactor
+**Version Goal:** Begin the first phase of the workflow refactor by cleaning up the user interface.
 
 ### New Features:
 * **[Editor]** Concise UI: Refactored properties using a single `trigger_mode` enum to hide/show irrelevant settings.
@@ -89,6 +96,7 @@ The following details the evolution and fixes applied to the Cinematic Camera Sy
 ---
 
 ## v1.7 - Architectural Stability
+**Version Goal:** Transition the system's boolean mode controls to a single, more stable enum system.
 
 ### Fixes & Improvements:
 * **[Code Cleanup]** Converted all mode booleans to the new `trigger_mode` enum.
@@ -97,6 +105,9 @@ The following details the evolution and fixes applied to the Cinematic Camera Sy
 ---
 
 ## v1.6 - Feature Expansion
+**Version Goal:** Add core functionality features (Set on Start, Revert) and establish a clear function for core logic handling.
+
+NOTE: v1.5 was skipped and the planned changes were merged into this update.
 
 ### New Features:
 * Added 'Set on Start' (Mode 0) and 'Revert to Default' (Mode 4).
@@ -108,6 +119,7 @@ The following details the evolution and fixes applied to the Cinematic Camera Sy
 ---
 
 ## v1.4 - Initial Stability Pass
+**Version Goal:** Harden the setup process by ensuring critical components are automatically created and warnings are robust.
 
 ### Fixes & Improvements:
 * **[Editor]** Implemented robust auto-creation of CollisionShape3D.
@@ -116,6 +128,7 @@ The following details the evolution and fixes applied to the Cinematic Camera Sy
 ---
 
 ## v1.3 - Plugin Stability
+**Version Goal:** Add basic editor-side warnings and ensure clean plugin behavior upon being disabled.
 
 ### Fixes & Improvements:
 * **[Editor]** Added in-editor configuration warnings.
@@ -124,6 +137,7 @@ The following details the evolution and fixes applied to the Cinematic Camera Sy
 ---
 
 ## v1.22 - Documentation Pass
+**Version Goal:** Complete initial user documentation pass for all scripts.
 
 ### Fixes & Improvements:
 * **[Polish]** Enhanced all scripts with detailed comments and `##` tooltips.
@@ -131,6 +145,7 @@ The following details the evolution and fixes applied to the Cinematic Camera Sy
 ---
 
 ## v1.2 - Polish
+**Version Goal:** Establish basic editor integration features.
 
 ### New Features:
 * **[Editor]** Implemented `class_name` to show descriptions and icons.
@@ -138,6 +153,7 @@ The following details the evolution and fixes applied to the Cinematic Camera Sy
 ---
 
 ## v1.1 - Polish
+**Version Goal:** Organize properties into logical user groups.
 
 ### New Features:
 * **[Editor]** Organized properties into `@export_group` categories.
@@ -145,6 +161,7 @@ The following details the evolution and fixes applied to the Cinematic Camera Sy
 ---
 
 ## v1.01 - Plugin Features
+**Version Goal:** Add first visual feature.
 
 ### New Features:
 * **[Editor]** Plugin automatically colors debug shapes.
@@ -152,6 +169,7 @@ The following details the evolution and fixes applied to the Cinematic Camera Sy
 ---
 
 ## v1.0 - Initial Release
+**Version Goal:** Establish the foundational code and structure.
 
 ### New Features:
 * Initial release of the cinematic camera system.
