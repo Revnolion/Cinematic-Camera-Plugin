@@ -107,7 +107,7 @@ The following details the evolution and fixes applied to the Cinematic Camera pl
 ## v1.6 - Feature Expansion
 **Version Goal:** Add core functionality features (Set on Start, Revert) and establish a clear function for core logic handling.
 
-NOTE: v1.5 was skipped and the planned changes were merged into this update.
+**NOTE:** v1.5 was skipped and the planned changes were merged into this update.
 
 ### New Features:
 * Added 'Set on Start' (Mode 0) and 'Revert to Default' (Mode 4).
