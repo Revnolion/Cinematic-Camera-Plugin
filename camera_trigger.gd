@@ -10,7 +10,7 @@ extends Area3D
 enum TriggerMode {
 	SIMPLE_FOLLOW,
 	FIXED_POSITION,
-	PATH_TRACKING, 
+	PATH_TRACKING,
 	REVERT_TO_DEFAULT
 }
 
@@ -21,18 +21,28 @@ enum TriggerMode {
 ## (Use for cinematic opening shots).
 @export var set_on_start: bool = false
 
+# ---
+
 # --- CAMERA SETTINGS ---
 @export_group("Camera Settings")
 ## (Click to find and assign the node in the 'main_camera' group)
 @export var auto_find_main_camera: bool = false:
 	set = _auto_find_main_camera
+
+#
 ## Tells the trigger which MainCamera node to control.
 ## Must be assigned, or use 'Auto Find Main Camera'.
 @export var main_camera: Camera3D
+
+## ---
 ## New follow speed the camera should use when entering this zone.
 @export var new_follow_speed: float = 2.0
+
+#
 ## The visual and collision size of the trigger box.
 @export var trigger_size: Vector3 = Vector3(5, 3, 5): set = _set_trigger_size, get = _get_trigger_size
+
+# ---
 
 # --- Trigger Mode ---
 @export_group("Trigger Mode")
@@ -42,32 +52,43 @@ enum TriggerMode {
 		trigger_mode = value
 		# Triggers color change and UI refresh when the mode is switched.
 		call_deferred("_set_gizmo_color")
-		call_deferred("_update_mode_description") 
-		notify_property_list_changed() 
+		call_deferred("_update_mode_description")
+		notify_property_list_changed()
 
 ## (Read-Only) A description of the selected Trigger Mode.
-@export_multiline var mode_description: String 
+@export_multiline var mode_description: String
+
+# ---
 
 # --- Mode 1: Simple Follow (Conditional) ---
 @export_group("Mode 1: Simple Follow", "mode_1_")
 ## The simple, static offset the camera will use.
 @export var mode_1_new_camera_offset: Vector3 = Vector3(0, 4, 10)
 
+# ---
+
 # --- Mode 2: Fixed Position (Conditional) ---
 @export_group("Mode 2: Fixed Position", "mode_2_")
 ## The Marker3D node the camera will move to and look from.
 @export var mode_2_fixed_target: Node3D
 
+# ---
+
 # --- Mode 3: Path Tracking ---
 @export_group("Mode 3: Path Tracking", "mode_3_")
 ## The Path3D node the camera will follow.
-@export var mode_3_camera_path: NodePath
+@export var mode_3_camera_path: NodePath:
+	set = _set_mode_3_camera_path # V2.3 Auto-detect setter
+
+## ---
 ## The axis the PLAYER moves along (e.g., X-Axis for a left/right hallway).
 @export var mode_3_player_track_axis: Vector3.Axis = Vector3.AXIS_X
 ## The player's world position where the camera path *starts* (0%).
 @export var mode_3_player_track_start: float = 0.0
 ## The player's world position where the camera path *ends* (100%).
 @export var mode_3_player_track_end: float = 20.0
+
+## --- AIMING ---
 ## If true, the camera will always look at the player.
 ## If false, it will follow the path's rotation.
 @export var mode_3_always_look_at_player: bool = true
@@ -78,67 +99,68 @@ enum TriggerMode {
 func _enter_tree():
 	if Engine.is_editor_hint():
 		call_deferred("_create_shape_in_editor")
-		call_deferred("_set_gizmo_color") 
+		call_deferred("_set_gizmo_color")
 		call_deferred("_update_mode_description")
-		
-func _create_shape_in_editor():
-	if not Engine.is_editor_hint():
+
+# --- V2.3 CLEANUP AND AUTO-DETECT LOGIC ---
+## Safety cleanup: Reverts the camera if the trigger is deleted mid-game.
+func _exit_tree():
+	# Only run at runtime, not in the editor
+	if Engine.is_editor_hint():
 		return
 	
-	var shape_node = find_child("CSG_Shape_Gizmo", false) 
+	# If the camera exists, force it to revert to default to prevent lockup
+	if is_instance_valid(main_camera) and trigger_mode != TriggerMode.REVERT_TO_DEFAULT:
+		main_camera.revert_to_default()
+
+## V2.3 Setter: Runs path detection when a Path3D node is assigned.
+func _set_mode_3_camera_path(value: NodePath):
+	mode_3_camera_path = value
 	
-	if not shape_node:
-		print("CameraTrigger: Creating CSG_Shape_Gizmo for visualization.")
-		
-		var new_shape = CSGBox3D.new()
-		new_shape.name = "CSG_Shape_Gizmo" 
-		
-		new_shape.use_collision = false 
-		new_shape.size = trigger_size 
-		
-		add_child(new_shape)
-		new_shape.owner = get_tree().edited_scene_root
-
-func _set_trigger_size(new_size: Vector3):
-	trigger_size = new_size 
-
 	if Engine.is_editor_hint():
-		var shape = find_child("CSG_Shape_Gizmo", false)
-		if is_instance_valid(shape) and shape is CSGBox3D:
-			shape.size = new_size
-			update_configuration_warnings()
-
-func _get_trigger_size():
-	if Engine.is_editor_hint():
-		var shape = find_child("CSG_Shape_Gizmo", false)
-		if is_instance_valid(shape) and shape is CSGBox3D:
-			return shape.size
-	
-	return trigger_size
-
-func _set_gizmo_color():
-	var color_map = {
-		TriggerMode.SIMPLE_FOLLOW: Color.html("#2EE07E"),  
-		TriggerMode.FIXED_POSITION: Color.html("#E02E2E"),   
-		TriggerMode.PATH_TRACKING: Color.html("#2E99E0"),
-		TriggerMode.REVERT_TO_DEFAULT: Color.html("#E0D72E"), 
-	}
-	
-	var shape = find_child("CSG_Shape_Gizmo", false)
-	if not is_instance_valid(shape):
+		_detect_path_bounds()
+		
+## V2.3 Logic: Attempts to automatically detect the primary movement axis and bounds.
+func _detect_path_bounds():
+	if not mode_3_camera_path:
 		return
-		
-	var material = StandardMaterial3D.new()
-	material.shading_mode = StandardMaterial3D.SHADING_MODE_UNSHADED
-	material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
-	material.albedo_color = color_map[trigger_mode] * Color(1, 1, 1, 0.3) 
-	shape.material_override = material
 	
-	if Engine.is_editor_hint():
-		update_configuration_warnings()
+	var path_node = get_node_or_null(mode_3_camera_path)
+	
+	if is_instance_valid(path_node) and path_node is Path3D:
+		var curve = path_node.curve
+		if curve.get_point_count() < 2:
+			return
+			
+		# Get the start (0) and end (last) points in global space
+		var start_pos = path_node.to_global(curve.get_point_position(0))
+		var end_pos = path_node.to_global(curve.get_point_position(curve.get_point_count() - 1))
+		
+		var diff = (end_pos - start_pos).abs()
+		
+		# 1. Detect Primary Axis (where the difference is largest)
+		if diff.x > diff.y and diff.x > diff.z:
+			mode_3_player_track_axis = Vector3.AXIS_X
+		elif diff.y > diff.x and diff.y > diff.z:
+			mode_3_player_track_axis = Vector3.AXIS_Y
+		else:
+			mode_3_player_track_axis = Vector3.AXIS_Z
+			
+		# 2. Set Player Bounds to match the Path's bounds on that axis
+		var primary_axis_index = mode_3_player_track_axis
+		
+		mode_3_player_track_start = min(start_pos[primary_axis_index], end_pos[primary_axis_index])
+		mode_3_player_track_end = max(start_pos[primary_axis_index], end_pos[primary_axis_index])
+		
+		# Ensure the editor sees the change
+		notify_property_list_changed()
 
 # --- CORE LOGIC ---
 func _ready():
+	# V2.3: Runtime check to guarantee auto-find runs if enabled
+	if not Engine.is_editor_hint() and auto_find_main_camera and not is_instance_valid(main_camera):
+		_auto_find_main_camera(true)
+		
 	body_entered.connect(_on_body_entered)
 	
 	var shape = find_child("CSG_Shape_Gizmo", false)
@@ -204,6 +226,23 @@ func _get_editor_viewport_camera():
 	if is_instance_valid(viewport):
 		return viewport.get_camera_3d()
 	return null
+	
+func _set_trigger_size(new_size: Vector3):
+	trigger_size = new_size 
+
+	if Engine.is_editor_hint():
+		var shape = find_child("CSG_Shape_Gizmo", false)
+		if is_instance_valid(shape) and shape is CSGBox3D:
+			shape.size = new_size
+			update_configuration_warnings()
+
+func _get_trigger_size():
+	if Engine.is_editor_hint():
+		var shape = find_child("CSG_Shape_Gizmo", false)
+		if is_instance_valid(shape) and shape is CSGBox3D:
+			return shape.size
+	
+	return trigger_size
 
 ## Updates the 'mode_description' text box based on the current 'trigger_mode'.
 func _update_mode_description():
@@ -223,7 +262,7 @@ func _update_mode_description():
 
 # --- EDITOR WARNINGS ---
 func _get_configuration_warnings():
-	var warnings = PackedStringArray() 
+	var warnings = PackedStringArray()
 	
 	if not is_instance_valid(main_camera):
 		warnings.append("A 'Main Camera' must be assigned.")

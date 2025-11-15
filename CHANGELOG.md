@@ -3,6 +3,20 @@
 The following details the evolution and fixes applied to the Cinematic Camera plugin.
 
 ---
+## v2.3 - Workflow Automation
+
+**Version Goal:** Improve setup workflow and prevent camera lock-up errors by automating critical configuration steps.
+
+### New Features:
+* **[QOL] Auto-Set Path Bounds:** CameraTrigger now automatically detects the primary movement axis and calculates 'Player Track Start/End' values when a Path3D node is assigned. This eliminates the need for manual coordinate entry in Path Tracking mode.
+* **[QOL] Auto-Find Player:** MainCamera can now automatically search the scene for a node in the 'player' group and assign it, simplifying the core setup process for new users.
+
+### Fixes & Improvements:
+* **[Stability Fix]** Implemented the `_exit_tree()` function in CameraTrigger to ensure the MainCamera always reverts to default settings if the trigger is deleted or removed mid-game, preventing a permanent camera lock-up.
+* **[Code Fix]** Re-implemented missing getter and setter function definitions (`_get_trigger_size` / `_set_trigger_size`) in CameraTrigger to restore full functionality to the `Trigger Size` export property.
+* **[Robustness]** Added a runtime check to guarantee the Auto-Find Main Camera logic runs correctly if enabled at startup.
+
+---
 
 ## v2.22 - Editor Logging Polish
 **Version Goal:** Ensure full logging consistency across all scripts by using `push_warning` for errors and `print_verbose` for non-critical setup information.
